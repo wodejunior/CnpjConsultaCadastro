@@ -1,0 +1,7 @@
+/target/
+# Ignorar certificados e chaves
+*.pfx
+*.pem
+*.crt
+*.key
+certificados/
