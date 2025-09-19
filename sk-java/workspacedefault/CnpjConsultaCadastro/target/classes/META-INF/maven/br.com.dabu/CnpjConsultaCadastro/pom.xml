@@ -1,0 +1,345 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.com.dabu</groupId>
+  <artifactId>CnpjConsultaCadastro</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>CNPJ Consulta Service</name>
+  <description>Serviço completo de consulta de CNPJ integrando ReceitaWS e SEFAZ</description>
+  
+  	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <maven.compiler.source>1.8</maven.compiler.source>
+	    <maven.compiler.target>1.8</maven.compiler.target>
+	    
+	    <java.version>1.8</java.version>
+	    <proguard.version>7.6.0</proguard.version>
+	    <proguard.maven.plugin.version>2.6.1</proguard.maven.plugin.version>
+		
+		<axis.version>1.4</axis.version>
+		<junit.version>5.9.0</junit.version>
+		<jersey.version>1.8</jersey.version>
+		
+		<json.version>1.1</json.version>
+		<json.impl.version>1.0.4</json.impl.version>
+	</properties>
+	<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+	
+	<dependencies>
+	
+        <!-- Apache HTTP Client (para integração com ReceitaWS e SEFAZ) -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.14</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- JDOM para processamento XML -->
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom2</artifactId>
+            <version>2.0.6.1</version>
+        </dependency>
+
+        <!-- JSON Processing -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.12.7</version>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.12</version>
+        </dependency>
+
+        <!-- JUnit para testes -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+	
+		<dependency>
+		  <groupId>org.apache.xmlgraphics</groupId>
+		  <artifactId>batik-bridge</artifactId>
+		  <version>1.14</version> <!-- ou versão compatível com Java 8 -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.34</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.9</version> <!-- última versão 100% compatível com Java 8 -->
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.ejb/javax.ejb-api -->
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>javax.ejb-api</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+	    
+		<dependency>
+		    <groupId>org.jdom</groupId>
+		    <artifactId>jdom</artifactId>
+		    <version>1.1.3</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.16.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.5</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20250107</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+		    <artifactId>jasperreports</artifactId>
+		    <version>6.21.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.codehaus.woodstox</groupId>
+		  <artifactId>stax2-api</artifactId>
+		  <version>4.2.1</version>
+		</dependency>
+		
+		<!-- Core e JAPE -->
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>jape</artifactId>
+			<version>4.34</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>skw-environment</artifactId>
+			<version>1.20.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>sankhya-commons</artifactId>
+			<version>4.34</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>mge-param</artifactId>
+			<version>4.34</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>mge-modelcore</artifactId>
+			<version>4.34</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>mgecom-model</artifactId>
+			<version>4.34</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>mgefin-model</artifactId>
+			<version>4.34</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>mgeinv-model</artifactId>
+			<version>4.34</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>sanws</artifactId>
+			<version>4.34</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>sanutil</artifactId>
+			<version>4.34</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>br.com.sankhya</groupId>
+		  <artifactId>print-service-base</artifactId>
+		  <version>4.34.64</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>brazilutils-0.1.6</artifactId>
+			<version>master</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.sankhya</groupId>
+			<artifactId>cuckoo</artifactId>
+			<version>master</version>
+		</dependency>
+		
+	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>sankhya-nexus</id>
+			<name>Sankhya Nexus Repository</name>
+			<url>https://maven.sankhya.com.br/repository/maven-public/</url>
+		</repository>
+	</repositories>
+	
+	<build>
+	    <plugins>
+	    
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-compiler-plugin</artifactId>
+			    <version>3.8.1</version>
+			    <configuration>
+			        <source>1.8</source>
+			        <target>1.8</target>
+			    </configuration>
+			</plugin>
+			
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+			
+	      <!-- JAR packaging -->
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-jar-plugin</artifactId>
+	        <version>3.2.0</version>
+	        <configuration>
+	          <archive>
+	            <manifest>
+	              <mainClass>br.com.dabu.btnacao.*</mainClass>
+	            </manifest>
+	          </archive>
+	        </configuration>
+	      </plugin>
+	
+	
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>br.com.cnpjconsulta.CnpjConsultaApplication</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+	
+	      <!-- ProGuard plugin -->
+	      <plugin>
+	        <groupId>com.github.wvengen</groupId>
+	        <artifactId>proguard-maven-plugin</artifactId>
+	        <version>${proguard.maven.plugin.version}</version>
+	        <executions>
+	          <execution>
+	            <phase>package</phase>
+	            <goals>
+	              <goal>proguard</goal>
+	            </goals>
+	          </execution>
+	        </executions>
+	        <configuration>
+	          <proguardVersion>${proguard.version}</proguardVersion>
+	          <injar>${project.build.finalName}.jar</injar>
+	          <outjar>${project.build.finalName}-obfuscated.jar</outjar>
+	          <obfuscate>true</obfuscate>
+	          <injarNotExistsSkip>true</injarNotExistsSkip>
+	          <options>
+	            <option>-overloadaggressively</option>
+	            <option>-useuniqueclassmembernames</option>
+	            <option>-allowaccessmodification</option>
+	            <option>-adaptclassstrings</option>
+	            <option>-repackageclasses</option>
+	            <option>-flattenpackagehierarchy</option>
+	            <option>-printmapping target/mapping.txt</option>
+	            <option>-printseeds target/seeds.txt</option>
+	            <option>-printusage target/unused.txt</option>
+	            <option>-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod</option>
+	            <option>-keep class br.com.dabu.btnacao.** { public *; }</option>
+	            <option>-dontnote !br.com.dabu**</option>
+	            <option>-dontwarn java.sql.**</option>
+	            <option>-dontskipnonpubliclibraryclassmembers</option>
+	            <option>-ignorewarnings</option>
+	            <option>-libraryjars ${java.home}/lib/rt.jar</option>
+	          </options>
+	          <!--
+	          <libs>
+	            <lib>${java.home}/jmods/java.base.jmod</lib>
+	            <lib>${java.home}/jmods/java.sql.jmod</lib>
+	          </libs>
+	          -->
+	        </configuration>
+	        <dependencies>
+	          <dependency>
+	            <groupId>com.guardsquare</groupId>
+	            <artifactId>proguard-base</artifactId>
+	            <version>${proguard.version}</version>
+	          </dependency>
+	        </dependencies>
+	      </plugin>
+	      	
+	    </plugins>
+	</build>
+</project>
