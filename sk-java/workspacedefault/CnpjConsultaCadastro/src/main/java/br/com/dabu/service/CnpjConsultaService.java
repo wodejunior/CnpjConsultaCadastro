@@ -1,10 +1,12 @@
 package br.com.dabu.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import br.com.dabu.model.CnpjConsultaResult;
 import br.com.dabu.model.ReceitaWSResponse;
 import br.com.dabu.model.SefazConsultaCadastroResponseJDOM;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 /**
  * Serviço principal para consulta de CNPJ

@@ -26,6 +26,12 @@
 	
 	<dependencies>
 	
+		<dependency>
+		    <groupId>axis</groupId>
+		    <artifactId>axis</artifactId>
+		    <version>1.4</version>
+		</dependency>
+	
         <!-- Apache HTTP Client (para integração com ReceitaWS e SEFAZ) -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -264,29 +270,7 @@
 	          </archive>
 	        </configuration>
 	      </plugin>
-	
-	
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>br.com.cnpjconsulta.CnpjConsultaApplication</mainClass>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-	
+	      
 	      <!-- ProGuard plugin -->
 	      <plugin>
 	        <groupId>com.github.wvengen</groupId>
@@ -320,6 +304,29 @@
 	            <option>-keep class br.com.dabu.btnacao.** { public *; }</option>
 	            <option>-dontnote !br.com.dabu**</option>
 	            <option>-dontwarn java.sql.**</option>
+				<option>-dontwarn javax.xml.**</option>
+				<option>-dontwarn javax.**</option>
+				<option>-dontwarn org.xml.sax.**</option>
+				<option>-dontwarn org.w3c.**</option>
+				<option>-dontwarn org.jcp.**</option>
+				<option>-dontwarn org.apache.**</option>
+				<option>-dontwarn org.brazilutils.**</option>
+				<option>-dontwarn org.cuckoo.**</option>
+				<option>-dontwarn org.eclipse.**</option>
+				<option>-dontwarn org.jdom.**</option>
+				<option>-dontwarn org.jdom2.**</option>
+				<option>-dontwarn org.slf4j.**</option>
+				<option>-dontwarn ch.qos.logback.**</option>
+				<option>-dontwarn com.sankhya.**</option>
+				<option>-dontwarn com.lowagie.**</option>
+				<option>-dontwarn com.fasterxml.**</option>
+				<option>-dontwarn com.ctc.wstx.**</option>				
+				<option>-dontwarn com.sun.**</option>
+				<option>-dontwarn jdk.**</option>
+				<option>-dontwarn net.sf.**</option>
+				<option>-dontwarn sun.**</option>
+				<option>-dontwarn lombok.**</option>
+				<option>-dontwarn br.com.sankhya.**</option>
 	            <option>-dontskipnonpubliclibraryclassmembers</option>
 	            <option>-ignorewarnings</option>
 	            <option>-libraryjars ${java.home}/lib/rt.jar</option>

@@ -22,16 +22,19 @@ Um serviço completo para consulta de dados de empresas através do CNPJ, desenv
 
 1. Clone o repositório
 2. Compile o projeto:
+
 ```bash
 mvn clean compile
 ```
 
 3. Execute a aplicação:
+
 ```bash
-mvn exec:java -Dexec.mainClass="br.com.cnpjconsulta.CnpjConsultaApplication"
+mvn exec:java -Dexec.mainClass="br.com.dabu.consulta.cadastro.CnpjConsultaApplication"
 ```
 
 Ou compile e execute o JAR:
+
 ```bash
 mvn clean package
 java -jar target/cnpj-consulta-service-1.0.0.jar
@@ -48,7 +51,7 @@ A aplicação oferece um menu interativo com as seguintes opções:
 3. **Ver informações do certificado** - Exibe dados do certificado configurado
 4. **Testar CNPJs de exemplo** - Testa com CNPJs pré-definidos
 5. **Validar CNPJ** - Valida apenas os dígitos verificadores
-0. **Sair** - Encerra a aplicação
+6. **Sair** - Encerra a aplicação
 
 ### Configuração de Certificado
 
@@ -63,26 +66,26 @@ Para consultas SEFAZ, configure um certificado A1:
 ```
 src/
 ├── main/
-│   ├── java/br/com/cnpjconsulta/
-│   │   ├── CnpjConsultaApplication.java           # Classe principal
+│   ├── java/br/com/dabu/consulta/cadastro/
+│   │   ├── CnpjConsultaApplication.java               # Classe principal
 │   │   ├── service/
-│   │   │   ├── CnpjConsultaService.java          # Serviço principal
-│   │   │   ├── ReceitaWSService.java             # Integração ReceitaWS
-│   │   │   └── SefazConsultaCadastroService.java # Integração SEFAZ
+│   │   │   ├── CnpjConsultaService.java               # Serviço principal
+│   │   │   ├── ReceitaWSService.java                  # Integração ReceitaWS
+│   │   │   └── SefazConsultaCadastroService.java      # Integração SEFAZ
 │   │   ├── model/
-│   │   │   ├── CnpjConsultaResult.java           # Resultado consolidado
-│   │   │   ├── ReceitaWSResponse.java             # Resposta ReceitaWS
+│   │   │   ├── CnpjConsultaResult.java                # Resultado consolidado
+│   │   │   ├── ReceitaWSResponse.java                 # Resposta ReceitaWS
 │   │   │   └── SefazConsultaCadastroResponseJDOM.java # Resposta SEFAZ
 │   │   ├── config/
-│   │   │   └── SefazEndpoints.java                # Endpoints SEFAZ
+│   │   │   └── SefazEndpoints.java                    # Endpoints SEFAZ
 │   │   └── util/
-│   │       ├── CertificadoManager.java           # Gerenciamento certificados
-│   │       ├── CertificadoUtil.java               # Utilitários certificado
-│   │       └── XMLUtil.java                       # Processamento XML
+│   │       ├── CertificadoManager.java                # Gerenciamento certificados
+│   │       ├── CertificadoUtil.java                   # Utilitários certificado
+│   │       └── XMLUtil.java                           # Processamento XML
 │   └── resources/
-│       ├── certificado/                           # Pasta para certificados
-│       └── logback.xml                            # Configuração logging
-└── pom.xml                                        # Dependências Maven
+│       ├── certificado/                               # Pasta para certificados
+│       └── logback.xml                                # Configuração logging
+└── pom.xml                                            # Dependências Maven
 ```
 
 ## Tecnologias Utilizadas
@@ -98,6 +101,7 @@ src/
 ## Validação de CNPJ
 
 O sistema implementa validação completa de CNPJ incluindo:
+
 - Verificação de formato (14 dígitos)
 - Validação dos dígitos verificadores
 - Verificação de CNPJs inválidos (todos os dígitos iguais)
@@ -105,6 +109,7 @@ O sistema implementa validação completa de CNPJ incluindo:
 ## Integração com Frameworks
 
 Este projeto foi desenvolvido como uma biblioteca Maven padrão, facilitando a integração com:
+
 - **Sankhya Om** - Framework de desenvolvimento empresarial
 - **Spring Boot** - Para aplicações web
 - **Quarkus** - Para aplicações nativas
@@ -113,6 +118,7 @@ Este projeto foi desenvolvido como uma biblioteca Maven padrão, facilitando a i
 ## Logs
 
 Os logs são salvos em:
+
 - Console (tempo real)
 - Arquivo: `logs/cnpj-consulta.log`
 - Rotação automática por data e tamanho (10MB)
@@ -126,3 +132,4 @@ Os logs são salvos em:
 ## Licença
 
 MIT
+
